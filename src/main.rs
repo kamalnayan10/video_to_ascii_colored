@@ -118,8 +118,7 @@ fn main() {
             let _ = fs::remove_file(format!("frames/output_{i}.jpg"));
               
         } 
-        std::process::Command::new("clear").status().unwrap();  
-        
+        std::process::Command::new("clear").status().unwrap();
         
     }
 
