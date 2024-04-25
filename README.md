@@ -7,7 +7,7 @@ Features
 
 Requirements
 
-    FFMpeg
+    FFmpeg
 
 Installation
 
