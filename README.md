@@ -7,7 +7,6 @@ Features
 
 Requirements
 
-    Rust
     FFMpeg
 
 Installation
