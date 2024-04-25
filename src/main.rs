@@ -2,7 +2,7 @@ use std::process::{Command,Stdio};
 use image::GenericImageView;
 use colored::Colorize;
 use crossterm::terminal;
-use std::{fs,path::Path , time , thread};
+use std::{fs,path::Path , time , thread,env};
 
 
 fn get_ascii(color_avg:u8) -> &'static str{
@@ -73,7 +73,10 @@ fn get_video_frame_rate(file_path: &str) -> Option<f32> {
 
 
 fn main() {
-    let input_file = "input.mp4";
+
+    let args: Vec<String> = env::args().collect();
+    
+    let input_file = &args[1];
 
     let _ = fs::create_dir("frames");
 
@@ -81,7 +84,7 @@ fn main() {
 
     let mut fps: f32 = 1.00;
 
-    if let Some(frame_rate) = get_video_frame_rate(input_file){
+    if let Some(frame_rate) = get_video_frame_rate(&input_file){
         fps = frame_rate;
     }
 
