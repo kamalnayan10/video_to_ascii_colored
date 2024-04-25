@@ -15,3 +15,7 @@ Installation
     Ensure you have Rust and FFMpeg installed.
     Run cargo build --release to build the application.
     Run cargo install --path . to install the application globally.
+
+Run
+
+    cargo run "path to video"
