@@ -73,7 +73,9 @@ fn get_video_frame_rate(file_path: &str) -> Option<f32> {
 
 
 fn main() {
-    let input_file = "anime.mp4";
+    let input_file = "input.mp4";
+
+    let _ = fs::create_dir("frames");
 
     let output_pattern = "frames/output_%d.jpg";
 
