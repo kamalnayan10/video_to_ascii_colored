@@ -21,8 +21,11 @@ Run
     cargo run "path to video"
     if you are facing any issues with missing files on use the following commands:
 UBUNTU
+    if you are facing any issues with missing files on use the following commands:
     ```
     sudo apt-get update
+    ```
+    ```
     sudo apt install build-essential
     ```
     or any alternative package managers for other distros
