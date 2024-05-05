@@ -1,14 +1,19 @@
+
 use std::process::{Command,Stdio};
 use image::GenericImageView;
 use colored::Colorize;
 use crossterm::terminal;
 use std::{fs,path::Path , time , thread,env};
 
-
 fn get_ascii(color_avg:u8) -> &'static str{
-    let idx = color_avg/52;
-
-    let ascii_char = ["." , "#" , "%" , "$" , "@"];
+    //for 5 color levels
+    //let idx = color_avg/52;
+    //for 8 color levels
+    let idx = color_avg/32;
+    //for 5 color levels
+    //let ascii_char = ["." , "#" , "%" , "$" , "@"];
+    //for 8 color levels
+    let ascii_char = ["." , "-" , "^" ,"*","+","|","#","$"];//redefined according to appropriate thickness of characters
 
     return ascii_char[idx as usize]
 }
@@ -35,7 +40,7 @@ fn image_to_ascii(path:String){
             let ascii = get_ascii(color_avg);
 
             
-            print!("{:^2}" , ascii.truecolor(pixels[0],pixels[1],pixels[2]));
+            print!("{:2}" , ascii.truecolor(pixels[0],pixels[1],pixels[2]));
         }
         println!("");
     }
@@ -115,14 +120,18 @@ fn main() {
                 frame_count += 1; 
             }
         }
-
         for i in 1..frame_count{
             image_to_ascii(format!("frames/output_{i}.jpg"));
-            let sleep_time = time::Duration::from_millis(fps as u64);
-            thread::sleep(sleep_time);
-            let _ = fs::remove_file(format!("frames/output_{i}.jpg"));
-              
-        } 
+            //let sleep_time = time::Duration::from_millis(fps as u64);
+            let sleep_time = time::Duration::from_millis(1000/fps as u64);
+            let mut next_time = time::Instant::now() + sleep_time;
+            thread::sleep(next_time - time::Instant::now());
+            next_time += sleep_time;//this method causes less delay while thread is sleeping
+            //std::process::Command::new("clear").status().unwrap();//clear terminal
+            print!("{esc}c", esc = 27 as char);//optimised clear terminal 
+            let _ = fs::remove_file(format!("frames/output_{i}.jpg"));  
+        }
+         
         std::process::Command::new("clear").status().unwrap();
         
     }
