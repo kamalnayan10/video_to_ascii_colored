@@ -1,4 +1,3 @@
-
 use std::process::{Command,Stdio};
 use image::GenericImageView;
 use colored::Colorize;
@@ -13,8 +12,8 @@ fn get_ascii(color_avg:u8) -> &'static str{
     //for 5 color levels
     //let ascii_char = ["." , "#" , "%" , "$" , "@"];
     //for 8 color levels
-    let ascii_char = ["." , "-" , "^" ,"*","+","|","#","$"];//redefined according to appropriate thickness of characters
-
+    //let ascii_char = ["." , "-" , "^" ,"*","+","|","#","$"];//redefined according to appropriate thickness of characters
+    let ascii_char = [".","▁" , "▂" , "▃" ,"▄","▅","▆","▇"];//redefined according to appropriate thickness of characters
     return ascii_char[idx as usize]
 }
 
