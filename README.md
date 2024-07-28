@@ -18,8 +18,7 @@ Installation
 
 Run
 
-    cargo run "path to video"
-    if you are facing any issues with missing files on use the following commands:
+    cargo run {path_to_video}
 
 if you are facing any issues with missing files on use the following commands:
     ```
