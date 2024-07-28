@@ -1,4 +1,4 @@
-use std::process::{Command,Stdio};
+use std::{process::{Command,Stdio}, time::Duration};
 use image::GenericImageView;
 use colored::Colorize;
 use crossterm::terminal;
@@ -12,8 +12,9 @@ fn get_ascii(color_avg:u8) -> &'static str{
     //for 5 color levels
     //let ascii_char = ["." , "#" , "%" , "$" , "@"];
     //for 8 color levels
-    //let ascii_char = ["." , "-" , "^" ,"*","+","|","#","$"];//redefined according to appropriate thickness of characters
-    let ascii_char = [".","▁" , "▂" , "▃" ,"▄","▅","▆","▇"];//redefined according to appropriate thickness of characters
+    //let ascii_char = ["*" , "*" , "*" ,"*","*","*","*","*"];
+    let ascii_char = ["." , "-" , "^" ,"*","#","%","$","@"];//redefined according to appropriate thickness of characters
+    //let ascii_char = [".","▁" , "▂" , "▃" ,"▄","▅","▆","▇"];
     return ascii_char[idx as usize]
 }
 
@@ -30,10 +31,13 @@ fn image_to_ascii(path:String){
         for x in 0..width{
             let pixels = resized_img.get_pixel(x,y);
 
-            let mut color_avg: u8 = pixels[0]/3 + pixels[1]/3 + pixels[2]/3;
+            let mut color_avg: u8 = (pixels[0]/3 + pixels[1]/3 + pixels[2]/3);
 
             if pixels[3] == 0{
                 color_avg = 0;
+            }
+            else{
+                color_avg*=pixels[3]/255;
             }
 
             let ascii = get_ascii(color_avg);
@@ -121,16 +125,9 @@ fn main() {
         }
         for i in 1..frame_count{
             image_to_ascii(format!("frames/output_{i}.jpg"));
-            //let sleep_time = time::Duration::from_millis(fps as u64);
-            let sleep_time = time::Duration::from_millis(1000/fps as u64);
-            let mut next_time = time::Instant::now() + sleep_time;
-            thread::sleep(next_time - time::Instant::now());
-            next_time += sleep_time;//this method causes less delay while thread is sleeping
-            //std::process::Command::new("clear").status().unwrap();//clear terminal
             print!("{esc}c", esc = 27 as char);//optimised clear terminal 
             let _ = fs::remove_file(format!("frames/output_{i}.jpg"));  
-        }
-         
+        }         
         std::process::Command::new("clear").status().unwrap();
         
     }
