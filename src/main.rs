@@ -13,7 +13,7 @@ fn get_ascii(color_avg:u8) -> &'static str{
     //let ascii_char = ["." , "#" , "%" , "$" , "@"];
     //for 8 color levels
     //let ascii_char = ["*" , "*" , "*" ,"*","*","*","*","*"];
-    let ascii_char = ["." , "-" , "^" ,"*","#","%","$","@"];//redefined according to appropriate thickness of characters
+    let ascii_char = ["." , "-" , "*" ,"=","o","#","%","$"];//redefined according to appropriate thickness of characters
     //let ascii_char = [".","▁" , "▂" , "▃" ,"▄","▅","▆","▇"];
     return ascii_char[idx as usize]
 }
@@ -123,13 +123,14 @@ fn main() {
                 frame_count += 1; 
             }
         }
+        print!("\x1b[?25l");//hide cursor
         for i in 1..frame_count{
             image_to_ascii(format!("frames/output_{i}.jpg"));
-            print!("{esc}c", esc = 27 as char);//optimised clear terminal 
+            print!("\x1b[2J"/* OR "{esc}c", esc = 27 as char*/);//optimised clear terminal 
             let _ = fs::remove_file(format!("frames/output_{i}.jpg"));  
         }         
-        std::process::Command::new("clear").status().unwrap();
-        
+        //std::process::Command::new("clear").status().unwrap();
+        print!("\x1b[?25h");//unhide cursor
     }
 
     } else {

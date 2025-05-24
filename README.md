@@ -34,3 +34,4 @@ DEMO
 
 https://github.com/kamalnayan10/video_to_ascii_colored/assets/22148142/31847f24-5cc4-49f1-b05c-352afce2defa
 
+Contributors: [@kamalnayan10](https://github.com/kamalnayan10),[@Plasmakatana](https://github.com/Plasmakatana)
