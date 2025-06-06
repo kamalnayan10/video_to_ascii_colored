@@ -1,37 +1,88 @@
-# video_to_ascii_colored
-Features
+# 🎞️ video_to_ascii_colored
 
-    Video to ASCII: Convert videos of various formats into ASCII art.
-    Colorful Rendering: Retain the color information from the video during ASCII conversion.
-    Terminal Playback: Play the ASCII-rendered video directly within the terminal.
+A terminal-based Rust application that converts videos into colorful ASCII art and plays them directly in your terminal.
 
-Requirements
+---
 
-    FFmpeg
+## ✨ Features
 
-Installation
+- 🎥 **Video to ASCII**: Convert videos of various formats into ASCII art.
+- 🌈 **Colored Rendering**: Retains original video color information for vibrant terminal playback.
+- 🖥️ **Terminal Playback**: Watch your favorite videos in ASCII form, directly in your terminal.
 
-    Clone this repository to your local machine.
-    Ensure you have Rust and FFMpeg installed.
-    Run cargo build --release to build the application.
-    Run cargo install --path . to install the application globally.
+---
 
-Run
+## ⚙️ Requirements
 
-    cargo run {path_to_video}
+- [Rust](https://www.rust-lang.org/tools/install)
+- [FFmpeg](https://ffmpeg.org/download.html)
 
-if you are facing any issues with missing files on use the following commands:
-    ```
-    sudo apt-get update
-    ```
-    ```
-    sudo apt install build-essential
-    ```
-on Ubuntu or any alternative package managers for other distros
+---
+
+## 🛠️ Installation
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/kamalnayan10/video_to_ascii_colored.git
+   cd video_to_ascii_colored
+   ```
+
+2. **Install FFmpeg**:
+
+   On Ubuntu:
+
+   ```bash
+   sudo apt update
+   sudo apt install ffmpeg
+   ```
+
+   *(Use your distribution’s package manager if not on Ubuntu.)*
+
+3. **Build the project**:
+
+   ```bash
+   cargo build --release
+   ```
+
+---
+
+## ▶️ Usage
+
+```bash
+cargo run --release {path_to_video}
+```
+---
+
+## 🐧 Troubleshooting
+
+If you run into build issues (especially on a fresh system), run:
+
+```bash
+sudo apt-get update
+sudo apt install build-essential
+```
+
+---
+
+## 📽️ Demo
+
+https://github.com/kamalnayan10/video_to_ascii_colored/assets/22148142/31847f24-5cc4-49f1-b05c-352afce2defa
+
+---
 
 DEMO
     
 
-https://github.com/kamalnayan10/video_to_ascii_colored/assets/22148142/31847f24-5cc4-49f1-b05c-352afce2defa
+## 👥 Contributors
 
-Contributors: [@kamalnayan10](https://github.com/kamalnayan10),[@Plasmakatana](https://github.com/Plasmakatana)
+- [@kamalnayan10](https://github.com/kamalnayan10)
+- [@Plasmakatana](https://github.com/Plasmakatana)
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+
+You are free to use, modify, and distribute this software for both personal and commercial purposes, provided proper attribution is given.
